@@ -55,7 +55,7 @@ public partial class SukiTheme : Styles
     /// <summary>
     /// All available Color Themes.
     /// </summary>
-    public IAvaloniaReadOnlyList<SukiColorTheme> ColorThemes => _allThemes;
+    public IAvaloniaList<SukiColorTheme> ColorThemes => _allThemes;
 
     /// <summary>
     /// Currently active <see cref="ThemeVariant"/>
@@ -114,6 +114,20 @@ public partial class SukiTheme : Styles
             throw new InvalidOperationException("This color theme has already been added.");
         _colorThemeHashset.Add(sukiColorTheme);
         _allThemes.Add(sukiColorTheme);
+    }
+
+    /// <summary>
+    /// Delete <see cref="SukiColorTheme"/> and making 0 index theme active. Custom function
+    /// </summary>
+    /// <param name="sukiColorTheme">Old <see cref="SukiColorTheme"/> to delete.</param>
+    public void DeleteColorTheme(SukiColorTheme sukiColorTheme)
+    {
+        if (_colorThemeHashset.Contains(sukiColorTheme))
+        {
+            ChangeColorTheme(ColorThemes[0]);
+            _colorThemeHashset.Remove(sukiColorTheme);
+            _allThemes.Remove(sukiColorTheme);
+        }
     }
 
     /// <summary>

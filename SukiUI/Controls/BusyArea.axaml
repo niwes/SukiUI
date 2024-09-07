@@ -11,28 +11,33 @@
         <Style Selector="suki|BusyArea">
             <Setter Property="Template">
                 <ControlTemplate>
-                    <Panel>
-                        <ContentControl Content="{TemplateBinding Content}" />
-                        <DockPanel Name="LoadingBusyArea"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   LastChildFill="True">
-                            <TextBlock Margin="10"
-                                       DockPanel.Dock="Bottom"
+                    <Grid>
+                        <ContentControl HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Content="{TemplateBinding Content}" />
+                        <Grid Name="LoadingBusyArea"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch"
+                              Background="Transparent"
+                              RowDefinitions="*,*">
+                            <suki:Loading HorizontalAlignment="Stretch"
+                                          VerticalAlignment="Bottom"
+                                          IsHitTestVisible="False" />
+                            <TextBlock Grid.Row="1"
+                                       Margin="10"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Top"
                                        FontWeight="{DynamicResource DefaultDemiBold}"
                                        IsVisible="{TemplateBinding BusyText,
                                                                    Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
                                        Text="{TemplateBinding BusyText}" />
-                            <suki:Loading HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"
-                                          IsHitTestVisible="False" />
-                        </DockPanel>
-                    </Panel>
+                        </Grid>
+                    </Grid>
                 </ControlTemplate>
             </Setter>
         </Style>
 
-        <Style Selector="suki|BusyArea DockPanel#LoadingBusyArea">
+        <Style Selector="suki|BusyArea Grid#LoadingBusyArea">
             <Setter Property="Transitions">
                 <Transitions>
                     <DoubleTransition Property="Opacity" Duration="0:0:0.3" />
@@ -40,12 +45,14 @@
             </Setter>
         </Style>
 
-        <Style Selector="suki|BusyArea[IsBusy=True] DockPanel#LoadingBusyArea">
+        <Style Selector="suki|BusyArea[IsBusy=True] Grid#LoadingBusyArea">
+            <Setter Property="ZIndex" Value="1" />
             <Setter Property="Opacity" Value="1" />
         </Style>
 
-        <Style Selector="suki|BusyArea[IsBusy=False] DockPanel#LoadingBusyArea">
+        <Style Selector="suki|BusyArea[IsBusy=False] Grid#LoadingBusyArea">
             <Setter Property="Opacity" Value="0" />
+            <Setter Property="ZIndex" Value="-1" />
         </Style>
 
         <Style Selector="suki|BusyArea ContentControl">

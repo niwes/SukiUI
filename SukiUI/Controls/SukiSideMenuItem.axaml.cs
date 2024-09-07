@@ -49,6 +49,12 @@ public class SukiSideMenuItem : ListBoxItem
                 contentControl.IsVisible = false;
             }
         }
+        if (Header is null || Icon is null)
+        {
+            IsVisible = false;
+            Width = 0;
+            Height = 0;
+        }
     }
 
     protected override void OnPointerPressed(PointerPressedEventArgs e)

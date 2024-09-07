@@ -52,7 +52,6 @@
                                         </Style>
                                     </Panel.Styles>
                                     <StackPanel>
-                                        <LayoutTransformControl Name="PART_LayoutTransform" RenderTransformOrigin="0%,0%">
                                             <Panel>
                                                 <suki:GlassCard Name="PART_TitleBarBackground"
                                                                 BorderThickness="0"
@@ -109,7 +108,6 @@
                                                     </StackPanel>
                                                 </DockPanel>
                                             </Panel>
-                                        </LayoutTransformControl>
                                         <Menu IsEnabled="{TemplateBinding IsMenuVisible}" ItemsSource="{TemplateBinding MenuItems}" />
                                         <Border Name="PART_BottomBorder" BorderBrush="{DynamicResource SukiBorderBrush}" />
                                     </StackPanel>
