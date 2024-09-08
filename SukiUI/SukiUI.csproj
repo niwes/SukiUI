@@ -76,6 +76,12 @@
 	  <UpToDateCheckInput Remove="Controls\TouchInput\TouchNumericPad\TouchNumericPad.axaml" />
 	</ItemGroup>
 
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="COPY bin\Debug\netstandard2.0\SukiUI.dll ..\Out\SukiUI.dll" />
+		<Exec Command="COPY bin\Debug\netstandard2.0\SukiUI.dll ..\..\StealthShellBrowser\Shell.Desktop\Libs\\SukiUI.dll" />
+		<Exec Command="COPY bin\Debug\netstandard2.0\SukiUI.dll ..\..\StealthShellBrowser\Module.LogsChecker\Libs\SukiUI.dll" />
+	</Target>
+	
 	<ItemGroup>
 	  <Compile Update="Controls\WaveProgress.axaml.cs">
 	    <DependentUpon>WaveProgress.axaml</DependentUpon>

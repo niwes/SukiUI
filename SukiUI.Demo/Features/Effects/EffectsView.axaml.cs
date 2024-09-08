@@ -56,7 +56,7 @@ namespace SukiUI.Demo.Features.Effects
             try
             {
                 _errorText.Message= string.Empty;
-                var effect = SukiEffect.FromString(_textEditor.Text);
+                var effect = SukiEffect.FromString(_textEditor.Text, "Test");
                 _toyRenderer.SetEffect(effect);
                 _errorText.IsVisible = false;
             }

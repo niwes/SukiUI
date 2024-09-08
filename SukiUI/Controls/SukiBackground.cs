@@ -133,7 +133,7 @@ namespace SukiUI.Controls
             if (ShaderFile is not null)
                 _draw.Effect = SukiEffect.FromEmbeddedResource(ShaderFile);
             else if (ShaderCode is not null)
-                _draw.Effect = SukiEffect.FromString(ShaderCode);
+                _draw.Effect = SukiEffect.FromString(ShaderCode, Style.ToString());
             else
                 _draw.Effect = SukiEffect.FromEmbeddedResource(Style.ToString());
         }

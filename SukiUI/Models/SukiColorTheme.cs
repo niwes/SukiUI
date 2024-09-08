@@ -23,6 +23,7 @@ public record SukiColorTheme
     public Color AccentDark { get; }
 
     public IBrush AccentDarkBrush => new SolidColorBrush(AccentDark);
+    public Color CustomBackground { get; set; } = new(255, 27, 24, 27);
 
     // Used in shaders to save calculating them per-frame.
     internal Color BackgroundPrimary { get; }

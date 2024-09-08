@@ -34,16 +34,18 @@ namespace SukiUI.Utilities.Effects
 
         private readonly string _rawShaderString;
         private readonly string _shaderString;
+        private readonly string _shaderName;
 
         /// <summary>
         /// The compiled <see cref="SKRuntimeEffect"/> that will actually be used in draw calls. 
         /// </summary>
         public SKRuntimeEffect Effect { get; }
 
-        private SukiEffect(string shaderString, string rawShaderString)
+        private SukiEffect(string shaderString, string rawShaderString, string shaderName)
         {
             _shaderString = shaderString;
             _rawShaderString = rawShaderString;
+            _shaderName = shaderName;
             var compiledEffect = SKRuntimeEffect.Create(_shaderString, out var errors);
             Effect = compiledEffect ?? throw new ShaderCompilationException(errors);
         }
@@ -81,7 +83,7 @@ namespace SukiUI.Utilities.Effects
                 throw new FileNotFoundException(
                     $"Unable to find a file with the name \"{shaderName}\" anywhere in the assembly.");
             using var tr = new StreamReader(assembly.GetManifestResourceStream(resName)!);
-            return FromString(tr.ReadToEnd());
+            return FromString(tr.ReadToEnd(), shaderName);
         }
 
         /// <summary>
@@ -91,14 +93,14 @@ namespace SukiUI.Utilities.Effects
         /// </summary>
         /// <param name="shaderString">The shader code to be compiled.</param>
         /// <returns>An instance of a SukiBackgroundShader with the loaded shader</returns>
-        public static SukiEffect FromString(string shaderString)
+        public static SukiEffect FromString(string shaderString, string shaderName)
         {
             var sb = new StringBuilder();
             foreach (var uniform in Uniforms)
                 sb.AppendLine(uniform);
             sb.Append(shaderString);
             var withUniforms = sb.ToString();
-            return new SukiEffect(withUniforms, shaderString);
+            return new SukiEffect(withUniforms, shaderString, shaderName);
         }
 
 
@@ -133,7 +135,8 @@ namespace SukiUI.Utilities.Effects
             var suki = SukiTheme.GetInstance();
             var acc = ToFloat(suki.ActiveColorTheme!.BackgroundAccent);
             var prim = ToFloat(suki.ActiveColorTheme.BackgroundPrimary);
-            var darkBackground = ToFloat(suki.ActiveColorTheme.Background);
+            bool isCustom = _shaderName == "flat.sksl";
+            var darkBackground = ToFloat(isCustom ? suki.ActiveColorTheme.CustomBackground : suki.ActiveColorTheme.Background);
             var inputs = new SKRuntimeEffectUniforms(Effect)
             {
                 { "iResolution", new[] { (float)bounds.Width, (float)bounds.Height, 0f } },
