@@ -17,11 +17,13 @@
                             ClipToBounds="True"
                             CornerRadius="{TemplateBinding CornerRadius}">
                         <Panel Background="{DynamicResource PopupGradientBrush}">
-                            <ItemsPresenter Name="PART_ItemsPresenter"
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Center"
-                                            ItemsPanel="{TemplateBinding ItemsPanel}"
-                                            KeyboardNavigation.TabNavigation="Continue" />
+                            <ScrollViewer MaxHeight="300" VerticalScrollBarVisibility="Auto">
+                                <ItemsPresenter Name="PART_ItemsPresenter"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                ItemsPanel="{TemplateBinding ItemsPanel}"
+                                                KeyboardNavigation.TabNavigation="Continue" />
+                            </ScrollViewer>
                         </Panel>
                     </Border>
                 </Panel>
