@@ -30,7 +30,8 @@
                                        FontWeight="{DynamicResource DefaultDemiBold}"
                                        IsVisible="{TemplateBinding BusyText,
                                                                    Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                                       Text="{TemplateBinding BusyText}" />
+                                       Text="{TemplateBinding BusyText}"
+                                       TextWrapping="Wrap" />
                         </Grid>
                     </Grid>
                 </ControlTemplate>
