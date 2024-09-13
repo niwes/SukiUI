@@ -319,9 +319,9 @@
                         <DataGridColumnHeadersPresenter Name="PART_ColumnHeadersPresenter"
                                                         Grid.Row="0"
                                                         Grid.Column="1" />
-                        <DataGridColumnHeader Name="PART_TopRightCornerHeader"
+                        <!--<DataGridColumnHeader Name="PART_TopRightCornerHeader"
                                               Grid.Row="0"
-                                              Grid.Column="2" />
+                                              Grid.Column="2" />-->
                         <Rectangle Name="PART_ColumnHeadersAndRowsSeparator"
                                    Grid.Row="0"
                                    Grid.Column="0"
