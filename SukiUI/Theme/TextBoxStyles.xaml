@@ -1,9 +1,9 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:content="clr-namespace:SukiUI.Content"
-        xmlns:theme="clr-namespace:SukiUI.Theme"
         xmlns:suki="https://github.com/kikipoulet/SukiUI"
-        xmlns:system="clr-namespace:System;assembly=netstandard">
+        xmlns:system="clr-namespace:System;assembly=netstandard"
+        xmlns:theme="clr-namespace:SukiUI.Theme">
 
     <Design.PreviewWith>
         <Border Width="300"
@@ -173,8 +173,7 @@
                                            Text="{TemplateBinding Watermark}">
                                     <TextBlock.IsVisible>
                                         <MultiBinding Converter="{x:Static BoolConverters.And}">
-                                            <Binding Path="UseFloatingWatermark"
-                                                     RelativeSource="{RelativeSource TemplatedParent}" />
+                                            <Binding Path="UseFloatingWatermark" RelativeSource="{RelativeSource TemplatedParent}" />
                                             <Binding Converter="{x:Static StringConverters.IsNotNullOrEmpty}"
                                                      Path="Text"
                                                      RelativeSource="{RelativeSource TemplatedParent}" />
@@ -278,8 +277,7 @@
                                            Text="{TemplateBinding Watermark}">
                                     <TextBlock.IsVisible>
                                         <MultiBinding Converter="{x:Static BoolConverters.And}">
-                                            <Binding Path="UseFloatingWatermark"
-                                                     RelativeSource="{RelativeSource TemplatedParent}" />
+                                            <Binding Path="UseFloatingWatermark" RelativeSource="{RelativeSource TemplatedParent}" />
                                             <Binding Converter="{x:Static StringConverters.IsNotNullOrEmpty}"
                                                      Path="Text"
                                                      RelativeSource="{RelativeSource TemplatedParent}" />
@@ -342,7 +340,7 @@
 
 
         <Setter Property="Foreground" Value="{DynamicResource SukiText}" />
-        <Setter Property="SelectionBrush" Value="{DynamicResource SukiBorderBrush}" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource SukiPrimaryColor}" />
         <Setter Property="MinHeight" Value="45" />
         <Setter Property="Padding" Value="6,8,5,6" />
         <Setter Property="ContextFlyout" Value="{StaticResource DefaultTextBoxContextFlyout}" />
@@ -353,23 +351,23 @@
 
                 <Border Padding="5">
                     <Border.Resources>
-                       
-                       
+
+
                         <theme:StringToDoubleConverter x:Key="StringToDoubleC" />
                     </Border.Resources>
                     <Panel>
-                    <suki:GlassCard Name="border"
-                            Padding="0" Classes="Discrete"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                        
-                            CornerRadius="{TemplateBinding CornerRadius}">
-                        <suki:GlassCard.Transitions>
-                            <Transitions>
-                                <BrushTransition Property="BorderBrush" Duration="0:0:0.2" />
-                            </Transitions>
-                        </suki:GlassCard.Transitions>
-                    </suki:GlassCard>
+                        <suki:GlassCard Name="border"
+                                        Padding="0"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Classes="Discrete"
+                                        CornerRadius="{TemplateBinding CornerRadius}">
+                            <suki:GlassCard.Transitions>
+                                <Transitions>
+                                    <BrushTransition Property="BorderBrush" Duration="0:0:0.2" />
+                                </Transitions>
+                            </suki:GlassCard.Transitions>
+                        </suki:GlassCard>
                         <Border Name="borderbottom"
                                 Margin="1,-1,1,-1"
                                 BorderBrush="{TemplateBinding BorderBrush}"
@@ -392,8 +390,7 @@
                                            Text="{TemplateBinding Watermark}">
                                     <TextBlock.IsVisible>
                                         <MultiBinding Converter="{x:Static BoolConverters.And}">
-                                            <Binding Path="UseFloatingWatermark"
-                                                     RelativeSource="{RelativeSource TemplatedParent}" />
+                                            <Binding Path="UseFloatingWatermark" RelativeSource="{RelativeSource TemplatedParent}" />
                                             <Binding Converter="{x:Static StringConverters.IsNotNullOrEmpty}"
                                                      Path="Text"
                                                      RelativeSource="{RelativeSource TemplatedParent}" />
@@ -474,7 +471,7 @@
     <Style Selector="TextBox.FlatTextBox /template/ suki|GlassCard#border">
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="ClipToBounds" Value="True" />
- 
+
     </Style>
 
 
@@ -496,7 +493,7 @@
     </Style>
     <Style Selector="TextBox:focus /template/ suki|GlassCard#border">
         <Setter Property="BorderBrush" Value="{DynamicResource SukiPrimaryColor}" />
-<Setter Property="BorderThickness" Value="1.2" />
+        <Setter Property="BorderThickness" Value="1.2" />
     </Style>
     <Style Selector="TextBox:error /template/ suki|GlassCard#border">
         <Setter Property="BorderBrush" Value="{DynamicResource ErrorBrush}" />
@@ -590,8 +587,7 @@
         </Setter>
     </Style>
 
-    <Style
-        Selector="ToggleButton.passwordBoxRevealButton:not(ToggleButton:checked) /template/ Path#PART_GlyphElement_Hide">
+    <Style Selector="ToggleButton.passwordBoxRevealButton:not(ToggleButton:checked) /template/ Path#PART_GlyphElement_Hide">
         <Setter Property="IsVisible" Value="False" />
     </Style>
 
@@ -606,17 +602,17 @@
     <Style Selector="TextBox.NoShadow /template/ Border">
         <Setter Property="BoxShadow" Value="0 0 0 0 Gray" />
     </Style>
-    
+
     <Style Selector="TextBox.NoShadow /template/ suki|GlassCard#border">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="IsVisible" Value="False"></Setter>
+        <Setter Property="IsVisible" Value="False" />
     </Style>
-    
+
     <Style Selector="TextBox.NoShadow:focus /template/ suki|GlassCard#border">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
     </Style>
 
-    
+
 </Styles>
