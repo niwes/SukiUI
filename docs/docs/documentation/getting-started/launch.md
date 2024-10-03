@@ -15,6 +15,10 @@ Include SukiUI styles in your `App.axaml`
 </Application>
 ```
 
+::: warning
+If a default `ThemeColor` is not set and you do not set the theme by any other means, your window and many controls will be completely transparent.
+:::
+
 ## Use SukiWindow as MainWindow
 
 Change MainWindow from Window class to SukiWindow class.
@@ -62,7 +66,6 @@ public partial class MainWindow : Window
 
 Modified `MainWindow.axaml.cs`: 
 
-
 ```csharp
 using SukiUI.Controls; // [!code highlight]
 
@@ -80,9 +83,6 @@ public partial class MainWindow : SukiWindow // [!code highlight]
 ## Done
 
 You're now ready to use SukiUI ! We advise you to theme your app now. Please check the [Theming Page](https://kikipoulet.github.io/SukiUI/documentation/theming/basic.html) and the [SukiWindow Page](https://kikipoulet.github.io/SukiUI/documentation/controls/layout/sukiwindow.html)
-
-
-
 
 ::: warning
 If you encounter the following exception:
