@@ -3,7 +3,6 @@ using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using System;
 
 namespace SukiUI.Controls;
 
@@ -23,10 +22,10 @@ public class TagsBox : Avalonia.Controls.TextBox
     {
         AddHandler(KeyDownEvent, EnterTextBoxTags, RoutingStrategies.Tunnel);
         AddHandler(TextInputEvent, OnTextInput, RoutingStrategies.Tunnel);
-        this.GetObservable(TextBox.TextProperty).Subscribe(text => OnTextChanged(this, text));
+        TextBox.TextProperty.Changed.AddClassHandler<TextBox>((_, args) => OnTextChanged(args.NewValue?.ToString()));
     }
 
-    private void OnTextChanged(object sender, string? text)
+    private void OnTextChanged(string? text)
     {
         TextChangedHandler?.Invoke(this, text);
     }
