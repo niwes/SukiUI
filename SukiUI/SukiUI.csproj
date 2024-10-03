@@ -50,6 +50,7 @@
 		<None Remove="CustomFont\MiSans\MiSansLatin-Regular.ttf" />
 		<None Remove="CustomFont\MiSans\MiSansLatin-Semibold.ttf" />
 		<None Remove="CustomFont\MiSans\MiSansLatin-Thin.ttf" />
+		<None Remove="Theme\TagsBoxStyles.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -9,6 +9,7 @@
     <StyleInclude Source="avares://SukiUI/Theme/Colors.xaml" />
 
     <StyleInclude Source="avares://SukiUI/Theme/TextBoxStyles.xaml" />
+    <StyleInclude Source="avares://SukiUI/Theme/TagsBoxStyles.xaml" />
     <StyleInclude Source="avares://SukiUI/Theme/RichTextBoxStyles.axaml" />
     <StyleInclude Source="avares://SukiUI/Theme/BorderStyles.xaml" />
 
@@ -70,7 +71,6 @@
                 <ResourceInclude Source="avares://sukiUI/Theme/MenuFlyoutPresenter.axaml" />
                 <ResourceInclude Source="avares://sukiUI/Theme/AutoCompleteBoxStyles.axaml" />
                 <ResourceInclude Source="avares://sukiUI/Theme/ManagedFileChooser.axaml" />
-
                 <ResourceInclude Source="avares://sukiUI/Theme/TimePickerStyle.axaml" />
                 <ResourceInclude Source="avares://sukiUI/Theme/Calendar/Calendar.axaml" />
                 <ResourceInclude Source="avares://sukiUI/Theme/Calendar/CalendarButton.axaml" />

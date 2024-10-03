@@ -1,0 +1,242 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:content="clr-namespace:SukiUI.Content"
+        xmlns:controls="clr-namespace:SukiUI.Controls"
+        xmlns:suki="https://github.com/kikipoulet/SukiUI"
+        xmlns:system="clr-namespace:System;assembly=netstandard"
+        xmlns:theme="clr-namespace:SukiUI.Theme">
+
+    <Style Selector="controls|TagsBox">
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="BorderBrush" Value="{DynamicResource SukiControlBorderBrush}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource SmallCornerRadius}" />
+        <Setter Property="Background" Value="{DynamicResource SukiBackground}" />
+
+
+        <Setter Property="Foreground" Value="{DynamicResource SukiText}" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource SukiBorderBrush}" />
+        <Setter Property="MinHeight" Value="45" />
+        <Setter Property="Padding" Value="6,8,5,6" />
+        <Setter Property="ContextFlyout" Value="{StaticResource DefaultTextBoxContextFlyout}" />
+
+        <Setter Property="Template">
+
+            <ControlTemplate>
+
+                <Border Padding="5">
+                    <Border.Resources>
+
+
+                        <theme:StringToDoubleConverter x:Key="StringToDoubleC" />
+                    </Border.Resources>
+                    <Panel>
+                        <suki:GlassCard Name="border"
+                                        Padding="0"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Classes="Discrete"
+                                        CornerRadius="{TemplateBinding CornerRadius}">
+                            <suki:GlassCard.Transitions>
+                                <Transitions>
+                                    <BrushTransition Property="BorderBrush" Duration="0:0:0.2" />
+                                </Transitions>
+                            </suki:GlassCard.Transitions>
+                        </suki:GlassCard>
+                        <Border Name="borderbottom"
+                                Margin="1,-1,1,-1"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="0"
+                                ClipToBounds="True"
+                                CornerRadius="1">
+                            <Border.Transitions>
+                                <Transitions>
+                                    <BrushTransition Property="BorderBrush" Duration="0:0:0.2" />
+                                </Transitions>
+                            </Border.Transitions>
+
+
+                            <DockPanel Margin="{TemplateBinding Padding}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+
+                                <TextBlock Name="floatingWatermark"
+                                           DockPanel.Dock="Top"
+                                           Text="{TemplateBinding Watermark}">
+                                    <TextBlock.IsVisible>
+                                        <MultiBinding Converter="{x:Static BoolConverters.And}">
+                                            <Binding Path="UseFloatingWatermark" RelativeSource="{RelativeSource TemplatedParent}" />
+                                            <Binding Converter="{x:Static StringConverters.IsNotNullOrEmpty}"
+                                                     Path="Text"
+                                                     RelativeSource="{RelativeSource TemplatedParent}" />
+                                        </MultiBinding>
+                                    </TextBlock.IsVisible>
+                                </TextBlock>
+
+                                <DataValidationErrors>
+
+                                    <Grid ColumnDefinitions="Auto,*,Auto">
+                                        <Panel>
+                                            <TextBlock Margin="0,1,3,0"
+                                                       FontSize="13"
+                                                       Foreground="{DynamicResource SukiLowText}"
+                                                       Text="{TemplateBinding theme:TextBoxExtensions.Prefix}" />
+                                        </Panel>
+                                        <ScrollViewer Grid.Column="1"
+                                                      HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                                                      VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}">
+                                            <Panel>
+                                                <TextBlock Name="watermark"
+                                                           FontSize="{TemplateBinding FontSize}"
+                                                           IsVisible="{TemplateBinding Text,
+                                                                                       Converter={x:Static StringConverters.IsNullOrEmpty}}"
+                                                           Opacity="0.5"
+                                                           Text="{TemplateBinding Watermark}"
+                                                           TextAlignment="{TemplateBinding TextAlignment}"
+                                                           TextWrapping="{TemplateBinding TextWrapping}" />
+                                                <TextPresenter Name="PART_TextPresenter"
+                                                               Margin="0,0,0,0"
+                                                               CaretBrush="{DynamicResource SukiLowText}"
+                                                               CaretIndex="{TemplateBinding CaretIndex}"
+                                                               PasswordChar="{TemplateBinding PasswordChar}"
+                                                               RevealPassword="{TemplateBinding RevealPassword}"
+                                                               SelectionBrush="{TemplateBinding SelectionBrush}"
+                                                               SelectionEnd="{TemplateBinding SelectionEnd}"
+                                                               SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+                                                               SelectionStart="{TemplateBinding SelectionStart}"
+                                                               Text="{TemplateBinding Text,
+                                                                                      Mode=TwoWay}"
+                                                               TextAlignment="{TemplateBinding TextAlignment}"
+                                                               TextBlock.FontSize="{TemplateBinding FontSize}"
+                                                               TextBlock.Foreground="{TemplateBinding Foreground}"
+                                                               TextWrapping="{TemplateBinding TextWrapping}" />
+                                            </Panel>
+                                        </ScrollViewer>
+                                        <theme:TextEraserButton Grid.Column="2"
+                                                                Margin="5,0,0,0"
+                                                                Cursor="Hand"
+                                                                IsVisible="{TemplateBinding theme:TextBoxExtensions.AddDeleteButton}"
+                                                                Opacity="{TemplateBinding Text,
+                                                                                          Converter={StaticResource StringToDoubleC}}"
+                                                                Text="{TemplateBinding Text,
+                                                                                       Mode=TwoWay}">
+                                            <theme:TextEraserButton.Transitions>
+                                                <Transitions>
+                                                    <DoubleTransition Property="Opacity" Duration="0:0:0.35" />
+                                                </Transitions>
+                                            </theme:TextEraserButton.Transitions>
+                                        </theme:TextEraserButton>
+
+                                    </Grid>
+                                </DataValidationErrors>
+
+                            </DockPanel>
+                        </Border>
+                    </Panel>
+                </Border>
+
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    <Style Selector="controls|TagsBox:pointerover /template/ suki|GlassCard#border">
+        <Setter Property="BorderBrush" Value="{DynamicResource SukiBorderBrush}" />
+
+    </Style>
+
+    <Style Selector="controls|TagsBox.FlatTextBox /template/ suki|GlassCard#border">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="ClipToBounds" Value="True" />
+
+    </Style>
+
+
+    <Style Selector="controls|TagsBox:pointerover /template/ Border#borderbottom">
+        <Setter Property="BorderBrush" Value="{DynamicResource SukiBorderBrush}" />
+
+    </Style>
+
+
+    <Style Selector="controls|TagsBox.BottomBar /template/ Border#borderbottom">
+        <Setter Property="BorderThickness" Value="0,0,0,1.5" />
+
+    </Style>
+
+
+    <Style Selector="controls|TagsBox:focus /template/ Border#borderbottom">
+        <Setter Property="BorderBrush" Value="{DynamicResource SukiPrimaryColor}" />
+
+    </Style>
+    <Style Selector="controls|TagsBox:focus /template/ suki|GlassCard#border">
+        <Setter Property="BorderBrush" Value="{DynamicResource SukiPrimaryColor}" />
+        <Setter Property="BorderThickness" Value="1.2" />
+    </Style>
+    <Style Selector="controls|TagsBox:error /template/ suki|GlassCard#border">
+        <Setter Property="BorderBrush" Value="{DynamicResource ErrorBrush}" />
+    </Style>
+    <Style Selector="controls|TagsBox /template/ DockPanel">
+        <Setter Property="Cursor" Value="IBeam" />
+    </Style>
+    <Style Selector="controls|TagsBox:disabled /template/ suki|GlassCard#border">
+        <Setter Property="Opacity" Value="{DynamicResource ThemeDisabledOpacity}" />
+    </Style>
+
+    <Style Selector="controls|TagsBox.clearButton[AcceptsReturn=False][IsReadOnly=False]:focus:not(TextBox:empty)">
+        <Setter Property="InnerRightContent">
+            <Template>
+                <Button Classes="textBoxClearButton" Command="{Binding $parent[TextBox].Clear}" />
+            </Template>
+        </Setter>
+    </Style>
+
+    <Style Selector="controls|TagsBox.textBoxClearButton">
+        <Setter Property="Cursor" Value="Arrow" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="PART_ButtonLayoutBorder"
+                            Background="Transparent"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Path x:Name="PART_GlyphElement"
+                              Width="10"
+                              Height="10"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              Data="{StaticResource TextBoxClearButtonData}"
+                              Fill="{DynamicResource ThemeForegroundColor}"
+                              Stretch="Uniform" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style Selector="ToggleButton.passwordBoxRevealButton:not(ToggleButton:checked) /template/ Path#PART_GlyphElement_Hide">
+        <Setter Property="IsVisible" Value="False" />
+    </Style>
+
+    <Style Selector="ToggleButton.passwordBoxRevealButton:checked /template/ Path#PART_GlyphElement_Reveal">
+        <Setter Property="IsVisible" Value="False" />
+    </Style>
+
+    <Style Selector="Button.textBoxClearButton, ToggleButton.passwordBoxRevealButton">
+        <Setter Property="Focusable" Value="False" />
+    </Style>
+
+    <Style Selector="controls|TagsBox.NoShadow /template/ Border">
+        <Setter Property="BoxShadow" Value="0 0 0 0 Gray" />
+    </Style>
+
+    <Style Selector="controls|TagsBox.NoShadow /template/ suki|GlassCard#border">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="IsVisible" Value="False" />
+    </Style>
+
+    <Style Selector="controls|TagsBox.NoShadow:focus /template/ suki|GlassCard#border">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+
+
+</Styles>
