@@ -1,6 +1,4 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:suki="clr-namespace:SukiUI.Controls">
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Design.PreviewWith>
         <Border Width="300"
                 Padding="20"
@@ -12,7 +10,7 @@
             </StackPanel>
         </Border>
     </Design.PreviewWith>
-    <ControlTheme x:Key="{x:Type suki:AutoCompleteBox}" TargetType="suki:AutoCompleteBox">
+    <ControlTheme x:Key="{x:Type AutoCompleteBox}" TargetType="AutoCompleteBox">
         <Setter Property="BorderThickness" Value="0,0,0,1" />
         <Setter Property="MinWidth" Value="100" />
         <Setter Property="BorderBrush" Value="{DynamicResource SukiControlBorderBrush}" />
